@@ -235,11 +235,104 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // Enter your personal overrides below this line:
 
+// PREF: enable container tabs
+user_pref("privacy.userContext.enabled", true);
+
+// PREF: disable Firefox Sync
+user_pref("identity.fxaccounts.enabled", false);
+
+// PREF: disable Firefox View
+user_pref("browser.tabs.firefox-view", false);
+user_pref("browser.tabs.firefox-view-next", false);
+user_pref("browser.tabs.firefox-view-newIcon", false); // needed?
+user_pref("browser.firefox-view.feature-tour", "{\"screen\":\"\",\"complete\":true}");
+
+// PREF: disable login manager
+user_pref("signon.rememberSignons", false);
+
+// PREF: disable address and credit card manager
+user_pref("extensions.formautofill.addresses.enabled", false);
+user_pref("extensions.formautofill.creditCards.enabled", false);
+
+// PREF: set DoH provider
+user_pref("network.trr.uri", "https://dns.1337.black/dns-query");
+
+// PREF: enforce DNS-over-HTTPS (DoH)
+user_pref("network.trr.mode", 2);
+user_pref("network.trr.max-fails", 5);
+
+
+
+
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
 ****************************************************************************/
 // visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
 // Enter your scrolling overrides below this line:
+
+
+/****************************************************************************************
+ * Smoothfox                                                                            *
+ * "Faber est suae quisque fortunae"                                                    *
+ * priority: better scrolling                                                           *
+ * version: 8 January 2024                                                              *
+ * url: https://github.com/yokoffing/Betterfox                                          *
+ ***************************************************************************************/
+
+// Note: msdPhysics was enabled by default for 122 Nightly.
+// The options below have not been modified to account for this change.
+// [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1846935
+
+// Use only one option at a time!
+// Reset prefs if you decide to use different option.
+
+/****************************************************************************************
+ * OPTION: SHARPEN SCROLLING                                                           *
+****************************************************************************************/
+// credit: https://github.com/black7375/Firefox-UI-Fix
+// only sharpen scrolling
+user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
+user_pref("mousewheel.min_line_scroll_amount", 10); // 10-40; adjust this number to your liking; default=5
+user_pref("general.smoothScroll.mouseWheel.durationMinMS", 80); // default=50
+user_pref("general.smoothScroll.currentVelocityWeighting", "0.15"); // default=.25
+user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6"); // default=.4
+
+/****************************************************************************************
+ * OPTION: INSTANT SCROLLING (SIMPLE ADJUSTMENT)                                       *
+****************************************************************************************/
+// recommended for 60hz+ displays
+user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
+user_pref("general.smoothScroll", true); // DEFAULT
+user_pref("mousewheel.default.delta_multiplier_y", 275); // 250-400; adjust this number to your liking
+
+/****************************************************************************************
+ * OPTION: SMOOTH SCROLLING                                                            *
+****************************************************************************************/
+// recommended for 90hz+ displays
+user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
+user_pref("general.smoothScroll", true); // DEFAULT
+user_pref("general.smoothScroll.msdPhysics.enabled", true);
+user_pref("mousewheel.default.delta_multiplier_y", 300); // 250-400; adjust this number to your liking
+
+/****************************************************************************************
+ * OPTION: NATURAL SMOOTH SCROLLING V3 [MODIFIED]                                      *
+****************************************************************************************/
+// credit: https://github.com/AveYo/fox/blob/cf56d1194f4e5958169f9cf335cd175daa48d349/Natural%20Smooth%20Scrolling%20for%20user.js
+// recommended for 120hz+ displays
+// largely matches Chrome flags: Windows Scrolling Personality and Smooth Scrolling
+user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
+user_pref("general.smoothScroll", true); // DEFAULT
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
+user_pref("general.smoothScroll.msdPhysics.enabled", true);
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600);
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", 2.0);
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
+user_pref("general.smoothScroll.currentVelocityWeighting", 1.0);
+user_pref("general.smoothScroll.stopDecelerationWeighting", 1.0);
+user_pref("mousewheel.default.delta_multiplier_y", 300); // 250-400; adjust this number to your liking
+
 
 /****************************************************************************
  * END: BETTERFOX                                                           *
